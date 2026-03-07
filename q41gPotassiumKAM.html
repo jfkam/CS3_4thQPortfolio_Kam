@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Movie Rating</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: url('https://i.pinimg.com/1200x/0d/4a/21/0d4a2124af847f0edc403f63e602e2ea.jpg') no-repeat center center fixed;
+            background-size: cover;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+            padding: 20px; 
+            box-sizing: border-box;
+        }
+
+        .card {
+            background: rgba(255, 240, 246, 0.95); 
+            width: 500px; 
+            max-width: 100%; 
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            text-align: center; 
+            box-sizing: border-box;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            color: #d63384;
+            font-size: 24px;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            margin-top: 5px;
+            margin-bottom: 15px;
+            font-family: 'Poppins', sans-serif;
+            box-sizing: border-box;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 10px;
+            background: #ec4899; 
+            border: none;
+            border-radius: 6px;
+            color: white;
+            font-size: 15px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: #be185d;
+        }
+
+        .star {
+            font-size: 28px;
+            color: #fcd5e5;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .yellow {
+            color: yellow;
+        }
+
+   
+        .movie {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #ffe6f0;
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin-top: 10px;
+            border: 1px solid #ffb6d9;
+            transition: transform 0.2s;
+        }
+
+        .movie:hover {
+            transform: scale(1.02);
+        }
+
+        .movie-info {
+            text-align: left;
+            flex: 1; 
+        }
+
+        .movie-info p {
+            margin: 2px 0;
+            word-wrap: break-word; 
+        }
+
+        .movie-rating {
+            font-size: 20px;
+            color: yellow; 
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h2>Add a Movie</h2>
+        Title: <br>
+        <input id="title"><br>
+
+        Year: <br>
+        <input id="year"><br>
+
+        Genre: <br>
+        <select id="genre">
+            <option>Action</option>
+            <option>Fantasy</option>
+            <option>Horror</option>
+            <option>Science Fiction</option>
+            <option>Drama</option>
+            <option>Comedy</option>
+        </select>
+        <br>
+
+        Rating: <br>
+        <span class="star" onclick="setRating(1)">★</span>
+        <span class="star" onclick="setRating(2)">★</span>
+        <span class="star" onclick="setRating(3)">★</span>
+        <span class="star" onclick="setRating(4)">★</span>
+        <span class="star" onclick="setRating(5)">★</span>
+        <br><br>
+
+        <button onclick="addMovie()">Add Movie</button>
+
+        <h2>Movie List</h2>
+        <div id="movieList"></div>
+
+        <script>
+            let rating = 0;
+
+            function setRating(num) {
+                rating = num;
+                let stars = document.getElementsByClassName("star");
+                for (let i = 0; i < stars.length; i++) stars[i].classList.remove("yellow");
+                for (let i = 0; i < num; i++) stars[i].classList.add("yellow");
+            }
+
+            function addMovie() {
+                let title = document.getElementById("title").value;
+                let year = document.getElementById("year").value;
+                let genre = document.getElementById("genre").value;
+
+                if (!title || !year) return alert("Please enter title and year.");
+
+                let movie = { title, year, genre, rating };
+                let movies = localStorage.getItem("movies");
+                movies = movies ? JSON.parse(movies) : [];
+                movies.push(movie);
+                localStorage.setItem("movies", JSON.stringify(movies));
+
+                showMovies();
+
+                // reset form
+                document.getElementById("title").value = "";
+                document.getElementById("year").value = "";
+                rating = 0;
+                let stars = document.getElementsByClassName("star");
+                for (let i = 0; i < stars.length; i++) stars[i].classList.remove("yellow");
+            }
+
+            function showMovies() {
+                let movies = localStorage.getItem("movies");
+                movies = movies ? JSON.parse(movies) : [];
+
+                let output = "";
+                for (let i = 0; i < movies.length; i++) {
+                    let stars = "★".repeat(movies[i].rating);
+                    output += `<div class="movie">
+                                <div class="movie-info">
+                                    <p><strong>${movies[i].title}</strong> (${movies[i].year})</p>
+                                    <p>${movies[i].genre}</p>
+                                </div>
+                                <div class="movie-rating">${stars}</div>
+                               </div>`;
+                }
+
+                document.getElementById("movieList").innerHTML = output;
+            }
+
+            showMovies();
+        </script>
+    </div>
+</body>
+</html>
