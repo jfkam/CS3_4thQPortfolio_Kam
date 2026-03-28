@@ -63,7 +63,7 @@
       <tr>
         <td> 2 </td> 
         <td> JS Line 3 </td> 
-        <td> The javascript do not know what the in1 variable is. It was not called from an external location. </td>
+        <td> The javascript cannot recognize the in1 variable. It is an HTML element and was accessed without using DOM selection. </td>
         <td> Change to document.getElementById("in1").innerHTML</td>
       </tr>
       <tr>
@@ -81,14 +81,14 @@
       <tr>
         <td> 5 </td> 
         <td> JS Lines 12, 15, 19, 23, 27</td> 
-        <td> The javascript do not know what the out1 variable is. It was not called from an external location.</td>
+        <td> The javascript cannot recognize the out1 variable. It is an HTML element and was accessed without using DOM selection.</td>
         <td> Change to document.getElementById("out1").innerHTML</td>
       </tr>
       <tr>
         <td> 6 </td> 
         <td> JS Line 30 </td> 
-        <td> The function has a missing '}' making the code inside the function invalid</td>
-        <td> Add the missing '}' at the end to wrap all the code inside the function</td>
+        <td> The function has a missing '}' causing the code to have a syntax error</td>
+        <td> Add the missing '}' at the end to properly define the code inside the function</td>
       </tr>
       <tr>
         <td> 7 </td> 
@@ -103,19 +103,19 @@
       <tr>
         <td> 8 </td> 
         <td> CSS Line 34 </td> 
-        <td> The links appear to be aligned vertically, not horizontally</td>
+        <td> The navigation links appear to be aligned vertically, not in one line</td>
         <td> Change display: block to display: inline-block</td>
       </tr>
       <tr>
         <td> 9 </td> 
         <td> CSS Line 41 </td> 
-        <td> The space between a and :hover makes the css invalid</td>
+        <td> The space between a and :hover prevents the hover over effect</td>
         <td> Omit the space in between the a and :hover</td>
       </tr>
       <tr>
         <td> 10 </td> 
         <td> CSS Line 57 </td> 
-        <td> The left and bottom css do nothing on the position of the element</td>
+        <td> The left and bottom css has no effect on the position of the element because of the positioning css</td>
         <td> Add position: absolute so that the left and bottom css will take in affect to the position of the element</td>
       </tr>
      
