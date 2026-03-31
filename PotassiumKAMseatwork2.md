@@ -12,19 +12,18 @@
 
 # Step 4 : (Absolute):
 ## Why does the notice appear on top of the content? What happens if you swap the z‑index values?
-### The notice appear on top of the content because it has a z-index value of 2 which allows it to stack over the content. It stays the same because there is only one layer of element below the notice.
+### The notice appear on top of the content because it has a higher z-index value If you swap the z-index values, the content will appear on top of notice.
 
 # Challenge:
 
 
 ## What changes that you have to do on the code that will position .notice box on the top right corner of the .content box? Please write the code on paper as well (both html and css on the part of .notice and .content).
-### Change left css to right.
-
+### Set .content to position: relative and set .notice to position: absolute; top: 0; right: 0;
 ## Try to change the position of .content to relative then to fixed. What do you observed each time?
-### Relative makes the position of contenet relative to its normal posiiton while fixed makes the position of the content fixed to the viewport.
+### Relative makes the position of contenet relative to its normal posiiton while fixed makes the position of the content fixed, even if you scroll the page.
 
 ## What do you observe on about the effect of z-index on .notice and .content boxes?
-### The z-index makes the notice and content boxes overlap on each other.
+### The z-index makes the notice and content boxes appear on top of each other, when overlapped.
 
 
 # Reflection:
